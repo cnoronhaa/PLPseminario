@@ -38,9 +38,9 @@
 
 - Estrutura de Arquivos
 
-  **instalados/
+  instalados/
     └── <arquivo_baixado>
-  main.go**
+  main.go
   
   A pasta instalados será criada automaticamente no mesmo diretório onde o programa está sendo executado.
 
