@@ -1,0 +1,81 @@
+package main
+
+import(
+ "fmt"
+ "io"
+ "net/http"
+ "os"
+ "time"
+)
+
+func downloadArquivo(url, destino string, canal chan string, tentativas int, intervalo time.Duration){
+ for i := 0; i < tentativas; i++ {
+  if _, err := os.Stat(destino); err == nil {
+   canal <- fmt.Sprintf("Arquivo %s já existe. Ignorando o download", destino)
+   return
+  }
+
+  resp, err := http.Get(url)
+  if err != nil{
+   canal <- fmt.Sprintf("Erro ao baixar %s: %v", url, err)
+   time.Sleep(intervalo)
+   continue
+  }
+  defer resp.Body.Close()
+
+  arquivo, err := os.Create(destino)
+  if err != nil{
+   canal <- fmt.Sprintf("Erro ao criar arquivo %s: %v", destino, err)
+   return
+  }
+  defer arquivo.Close()
+
+  totalBytes := resp.ContentLength
+  var bytesDownloaded int64
+  buff := make([]byte, 1024)
+
+  for {
+   n, err := resp.Body.Read(buff)
+   if n > 0 {
+    bytesDownloaded += int64(n)
+    arquivo.Write(buff[:n])
+    progress := float64(bytesDownloaded) / float64(totalBytes) * 100
+    canal <- fmt.Sprintf("Progresso do download de %s: %.2f%%", destino, progress)
+   }
+   if err == io.EOF{
+    break
+   }
+   if err != nil{
+    canal <- fmt.Sprintf("Erro ao baixar %s: %v", url, err)
+    break
+   }
+  }
+  canal <- fmt.Sprintf("Download de %s concluído com sucesso!", destino)
+  return
+ }
+ canal <- fmt.Sprintf("Falha ao baixar %s após %d tentativas", url, tentativas)
+}
+
+func main(){
+ fmt.Print("Digite a URL do arquivo para download: ")
+ var url string
+ fmt.Scanln(&url)
+
+ fmt.Print("Digite o nome do arquivo para salvar: ")
+ var nomeArquivo string
+ fmt.Scanln(&nomeArquivo)
+
+ destino := "instalados/" + nomeArquivo
+
+ if _, err := os.Stat("instalados"); os.IsNotExist(err){
+  os.Mkdir("instalados", os.ModePerm)
+ }
+
+ canal := make(chan string)
+ tentativas := 3
+ intervalo := 2 * time.Second
+
+ go downloadArquivo(url, destino, canal, tentativas, intervalo)
+
+ fmt.Println(<-canal)
+}
