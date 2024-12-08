@@ -1,4 +1,4 @@
-*Descrição do Projeto*
+- Descrição do Projeto
 Este programa em Go é uma aplicação para realizar downloads de arquivos da internet, com suporte para:
 
 Retentativa automática: Em caso de falhas no download, são feitas até três tentativas antes de desistir.
@@ -6,7 +6,7 @@ Monitoramento de progresso: O progresso do download é exibido em tempo real par
 Criação de estrutura de diretórios: Os arquivos são salvos em uma pasta chamada instalados, que é criada automaticamente caso não exista.
 Validação de arquivos existentes: Se o arquivo já existe no destino, o download é ignorado.
 
-*Funcionalidades*
+- Funcionalidades
 Entrada de dados do usuário:
 
 O usuário fornece a URL do arquivo e o nome desejado para salvá-lo.
@@ -21,13 +21,13 @@ Estrutura organizada:
 
 Todos os arquivos baixados são armazenados na pasta instalados.
 
-*Pré-requisitos*
+- Pré-requisitos
 Para executar o programa, você precisará de:
 
 Go instalado na sua máquina (versão 1.16 ou superior recomendada).
 Conexão com a internet para realizar os downloads.
 
-*Como Executar*
+- Como Executar
 Clone o repositório (se aplicável) ou copie o código para um arquivo local.
 
 Salve o arquivo com o nome main.go.
@@ -43,7 +43,7 @@ A URL do arquivo para download.
 O nome com o qual deseja salvar o arquivo.
 O programa exibirá mensagens no terminal indicando o progresso e o status final do download.
 
-*Estrutura de Arquivos*
+- Estrutura de Arquivos
 plaintext
 Copiar código
 instalados/
