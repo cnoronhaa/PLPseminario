@@ -1,4 +1,5 @@
 - Descrição do Projeto
+
   Este programa em Go é uma aplicação para realizar downloads de arquivos da internet, com suporte para:
 
   1. Retentativa automática: Em caso de falhas no download, são feitas até três tentativas antes de desistir.
@@ -7,10 +8,11 @@
   4. Validação de arquivos existentes: Se o arquivo já existe no destino, o download é ignorado.
 
 - Funcionalidades
+  
   Entrada de dados do usuário:
   O usuário fornece a URL do arquivo e o nome desejado para salvá-lo.
   
-  Gestão do download:z
+  Gestão do download:
   O programa verifica se o arquivo já foi baixado antes de iniciar o download.
   Caso falhe, são feitas tentativas automáticas com intervalo de 2 segundos entre elas.
   
@@ -21,6 +23,7 @@
   Todos os arquivos baixados são armazenados na pasta instalados.
 
 - Pré-requisitos
+ 
   Para executar o programa, você precisará de:
 
   1. Go instalado na sua máquina (versão 1.16 ou superior recomendada).
