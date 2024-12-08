@@ -1,10 +1,10 @@
 - Descrição do Projeto
   Este programa em Go é uma aplicação para realizar downloads de arquivos da internet, com suporte para:
 
-  -- Retentativa automática: Em caso de falhas no download, são feitas até três tentativas antes de desistir.
-  2. Monitoramento de progresso: O progresso do download é exibido em tempo real para o usuário.
-  3. Criação de estrutura de diretórios: Os arquivos são salvos em uma pasta chamada instalados, que é criada automaticamente caso não exista.
-  4. Validação de arquivos existentes: Se o arquivo já existe no destino, o download é ignorado.
+  > Retentativa automática: Em caso de falhas no download, são feitas até três tentativas antes de desistir.
+  > Monitoramento de progresso: O progresso do download é exibido em tempo real para o usuário.
+  > Criação de estrutura de diretórios: Os arquivos são salvos em uma pasta chamada instalados, que é criada automaticamente caso não exista.
+  > Validação de arquivos existentes: Se o arquivo já existe no destino, o download é ignorado.
 
 - Funcionalidades
   Entrada de dados do usuário:
